@@ -48,7 +48,7 @@
     </section>
 <script src="js/jquery.js"></script>
 <script>
-    $.post(
+    $.get(
         "./js/time-shaft.json",
         {},
         function(data,state){
@@ -141,7 +141,7 @@
             });
             $(".zkdsj-timeshaft").append(div_timeshaft);
             $(".zkdsj-timeshaft>div:nth-last-child(2) .shaft-month").addClass(class_shaft_last_2);
-        },"json"
+        }
     );
 </script>
 <script>
