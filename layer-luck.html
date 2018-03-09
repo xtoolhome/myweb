@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>Luck弹层解决方案</title>
+<link rel="stylesheet" href="css/yuanmei.css" />
+</head>
+<body>
+<div style="padding:100px 0; text-align:center">
+    <input type="button" value="询问框" class="btn btn-red" onClick="luck1()">
+    <input type="button" value="提示框" class="btn btn-red" onClick="luck2()">
+</div>
+<script src="js/luck/luck.js"></script> 
+<script>
+//询问框
+function luck1(){
+	luck.open({
+		title: ['主要字体'],//标题
+		content: '这是一段文字示例，文字居中对齐左右留有一部分间距，内容字体可自定义。',//内容
+		btn:['忽略','立即查看'],
+		no: function(){
+			luck.close();
+		},
+		yes:function(){
+			luck.open({content: '自定义继续。。', time: 1500});
+		}
+	});
+}
+
+//提示框
+function luck2(){
+	luck.open({
+		title: ['主要字体'],//标题
+		content: '这是一段文字示例，文字居中对齐左右留有一部分间距，内容字体可自定义。',//内容
+		btn:['','确定'],
+		yes:function(){
+			luck.open({content: '自定义继续。。', time: 1500});
+		}
+	});
+}
+</script> 
+</body>
+</html>

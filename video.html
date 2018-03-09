@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>课程视频</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/glyphicon.css"/>
+    <link rel="stylesheet" type="text/css" href="css/videoPlay.css"/>
+
+    <!-- <link rel="stylesheet" href="css/yuanmei.css"/> -->
+</head>
+<body>
+<p class="video-tip">课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍</p>
+<div class="videoWrap">
+    <span class="video-class"></span>
+    <a href="javascript:void(0);" class="ell video-click shade v0" data-index="0">请点击观看视频请点击观看视频请点击观看视频</a>
+    <div class="video video-0">
+        
+    </div>
+</div>
+<div class="videoWrap">
+    <span class="video-class"></span>
+    <a href="javascript:void(0);" class="ell video-click shade v1" data-index="1">请点击观看视频请点击观看视频请点击观看视频</a>
+    <div class="video video-1">
+        
+    </div>
+</div>
+<div class="videoWrap">
+    <span class="video-class"></span>
+    <a href="javascript:void(0);" class="ell video-click shade v2" data-index="2">请点击观看视频请点击观看视频请点击观看视频</a>
+    <div class="video video-2">
+        
+    </div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/public.js"></script>
+<script src="js/videoPlay.js" type="text/javascript"></script>
+<script type="text/javascript">
+var list_video = new Array();    //视频对象的数组集合
+//组里存储这些video对象，然后每次点击时判断是第几个，其他的video就都去调用prototype里的方法，判断是暂停还是播放，全部变成暂停
+$(".videoWrap").on("click","a",function(){
+    var video = $(this).siblings("div.video");
+    var index = $(this).data("index");
+    if($(this).hasClass("shade")){
+        // 当前视频隐藏了，点击同时，隐藏其他视频      
+        var otherVideoWrap = $(this).removeClass("shade").parent(".videoWrap").siblings(".videoWrap");
+        $(this).removeClass("ell");
+        otherVideoWrap.find("a.video-click").addClass("shade");
+        otherVideoWrap.find("a.video-click").addClass("ell");
+        otherVideoWrap.find("div.video").css("display","none");
+        video.css("display","block");
+        // 暂停其他视频播放
+        for(var i=0;i<list_video.length;i++){
+            if(i === index){
+                continue;
+            }
+            list_video[i].pauseControl();
+        }
+        // 当前视频还未加载，需要进行加载
+        if($.trim(video.html()) === ""){
+            if($(this).data("index") === 0){
+                list_video.push(new Video(".video-0","第一课","video/video.mp4"));
+            }else if($(this).data("index") === 1){
+                list_video.push(new Video(".video-1","","video/video1.mp4"));
+            }else if($(this).data("index") === 2){
+                list_video.push(new Video(".video-2","","video/video2.mp4"));
+            }
+        }
+    }else{
+        // 多次点击同一课程，能切换显示、隐藏
+        $(this).addClass("shade");
+        $(this).addClass("ell");
+        video.css("display","none");
+        // 当前视频暂停
+        list_video[index].pauseControl();
+    }
+});
+</script>
+</body>
+</html>

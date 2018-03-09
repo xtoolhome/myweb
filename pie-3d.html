@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html class="bgcl"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>占卜中考</title>
+<!-- <link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/common.css" /> -->
+<link rel="stylesheet" href="css/yuanmei.css" />
+</head>
+<body class="bgcl">
+    <div id="container" style="height: 400px"></div>
+    <div id="container1" style="height: 400px"></div>
+<script src="js/jquery.js"></script>
+<script src="js/highcharts/highcharts.js"></script>
+<script src="js/highcharts/highcharts-3d.js"></script>
+<script>
+    $(function () {
+        Highcharts.chart('container', {
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: "武汉高中分配生生源组成情况"
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                margin:30
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    },
+                    showInLegend:true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    // ['Firefox', 45.0],
+                    {
+                        name: '武汉市第一中学',
+                        y: 45.0,
+                        sliced: true,
+                        selected: true
+                    },
+                    // ['IE', 26.8],
+                    {
+                        name: '武汉市第二中学',
+                        y: 26.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    {
+                        name: '武汉市第三中学',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    // ['Safari', 8.5],
+                    {
+                        name: '武汉市第四中学',
+                        y: 8.5,
+                        sliced: true,
+                        selected: true
+                    },
+
+                    // ['Opera', 6.2],
+                    {
+                        name: '武汉市第五中学',
+                        y: 6.2,
+                        sliced: true,
+                        selected: true
+                    },
+                    // ['Others', 0.7]
+                    {
+                        name: '武汉市第六中学',
+                        y: 0.7,
+                        sliced: true,
+                        selected: true
+                    }
+                ]
+                // ,
+                // dataLabels: {
+                //     enabled: true,
+                //     formatter: function () {
+                //         return '100';
+                //     },
+                //     rotation: -90,
+                //     color: '#FFFFFF',
+                //     align: 'right',
+                //     // format: '{point.y:.1f}', // one decimal
+                //     y: 10, // 10 pixels down from the top
+                //     style: {
+                //         fontSize: '13px',
+                //         fontFamily: 'Verdana, sans-serif'
+                //     },
+                //     inside:true
+                // }
+            }]
+        });
+        Highcharts.chart('container1', {
+            chart: {
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
+            },
+            title: {
+                text: "武汉高中分配生生源组成情况"
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    depth: 35,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    },
+                    showInLegend:true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: [
+                    ['Firefox', 45.0],
+                    {
+                        name: 'google',
+                        y: 45.0,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['IE', 26.8],
+                    ['Safari', 8.5],
+                    ['Opera', 6.2],
+                    ['Others', 0.7]
+                ]
+            }]
+        });
+    });
+</script>
+</body>
+</html>

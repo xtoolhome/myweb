@@ -1,0 +1,153 @@
+{
+    "lists": [{
+            "schoolid": "10",
+            "schoolname": "华师一附中",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "江夏区",
+            "studentcar": "1",
+            "other2":"优惠券50元"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中2",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "武昌区",
+            "studentcar": "0",
+            "other1":"助学卡1000元",
+            "other2":"优惠券50元"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中3",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "江夏区",
+            "studentcar": "0",
+            "other1":"助学卡100元",
+            "other2":"优惠券50元"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中4",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "武昌区",
+            "studentcar": "0",
+            "other1":"助学卡1000元"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中5",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "江夏区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中6",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "武昌区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中7",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "江夏区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中8",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "武昌区",
+            "studentcar": "0",
+            "other1":"助学卡100元",
+            "other2":"优惠券500元"
+        },{
+            "schoolid": "10",
+            "schoolname": "华师一附中",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "江夏区",
+            "studentcar": "1"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中2",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "武昌区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中3",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "江夏区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中4",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "武昌区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中5",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "江夏区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中6",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "重点高中",
+            "asks": "武昌区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中7",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "江夏区",
+            "studentcar": "0"
+        },
+        {
+            "schoolid": "10",
+            "schoolname": "华师一附中8",
+            "schoolurl": "./详情.html",
+            "schoollogo": "./images/school_img.jpg",
+            "views": "普通高中",
+            "asks": "武昌区",
+            "studentcar": "0"
+        }]
+}

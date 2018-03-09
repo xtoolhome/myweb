@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>学霸学渣中选择学校页面</title>
+<link rel="stylesheet" href="css/yuanmei.css" />
+</head>
+<body>
+    <div class="xueba-sel-head wp">
+        选择学校
+    </div>
+    <form class="xueba-sel-sch">
+        <div class="schnameWrap bgcl wp">
+            <input type="text" placeholder="请输入学校名称" class="schname" data-oldval="">
+        </div>
+        <!-- 弹框选择专业 -->
+        <div class="layer_sch">
+            <ul class="sch-all">
+                
+            </ul>
+            <ul class="sch-part hide">
+                
+            </ul>
+        </div>
+    </form>
+<script src="js/jquery.js"></script>
+<script>
+    
+
+    // 显示当前区域所有学校名称列表
+    show_citys();
+    // keyup 输入专业弹出下拉选项
+    $(".xueba-sel-sch").on("keyup",".schname",function(){
+        // $(".xueba-sel-sch").off("input");
+        ask_major_list(this);
+    });
+    // input 输入专业有变化时弹出下拉选项
+    $(".xueba-sel-sch").on("input",".schname",function(event){
+        ask_major_list(this);
+    });
+
+    // 显示当前区域所有学校名称列表
+    function show_citys(){
+        $.ajax({
+            type:"POST",
+            url:"./js/ask3.json",
+            data:{},
+            dataType:"json",
+            success:function(data){
+                var list = data.lists;
+                var lis = "";
+                for(var i=0;i<list.length;i++){
+                    lis += "<li data-code="+list[i].schoolcode+">"+list[i].schoolname+"</li>";
+                }
+                $(".layer_sch ul.sch-all").append(lis);
+                // $(".layer_sch").css("display","block");
+                // 添加点击事件
+                $(".layer_sch").off("click");
+                $(".layer_sch").on("click","ul li",function(e){
+                    e.stopPropagation();  //阻止冒泡
+                    $(".schname").val($(this).text());
+                    // $(".layer_sch").css("display","none");
+                    // 跳转到“学霸还是学渣主页”
+                    // window.location.href="学霸还是学渣主页.html?codeSch="+decodeURI($(this).data("code"))+"&nameSch="+decodeURI($(this).text());
+                });
+            },
+            error:function(e){
+                
+            }
+        })
+    }
+
+    // 输入专业，向后台请求返回专业列表
+    function ask_major_list(obj){
+        var newValue = $.trim($(obj).val());
+        // 输入值至少两个字符
+        if(newValue === ""){
+            // $(".layer_sch").css("display","none");
+            // 如果输入值为空，显示完整列表
+                $(".layer_sch ul.sch-all").removeClass("hide");
+                $(".layer_sch ul.sch-part").addClass("hide");
+            return false;
+        }
+        // 修改后值变成下一次onchange的修改前值
+        $("layer_sch").data("oldval",newValue);
+        // 显示完整的列表隐藏起来
+        $(".layer_sch ul.sch-all").addClass("hide");
+        // 局部匹配列表显示并初始化清空
+        $(".layer_sch ul.sch-part").removeClass("hide");
+        $(".layer_sch ul.sch-part").html("");
+        // 局部匹配
+        var list = $(".layer_sch ul.sch-all li");
+        var lis = "";
+        for(var i=0;i<list.length;i++){
+            var li_name = list[i].innerText;
+            // 匹配上
+            if(li_name.indexOf(newValue) !== -1){
+                lis+=list[i].outerHTML;
+            }
+
+            // lis += "<li data-code="+list[i].schoolcode+">"+list[i].schoolname+"</li>";
+        }
+        $(".layer_sch ul.sch-part").append(lis);
+        // 添加点击事件
+        $(".layer_sch").off("click");
+        $(".layer_sch").on("click","ul li",function(e){
+            e.stopPropagation();  //阻止冒泡
+            $(".schname").val($(this).text());
+            // $(".layer_sch").css("display","none");
+            // 跳转到“学霸还是学渣主页”
+            window.location.href="https://www.baidu.com?codeSch="+decodeURI($(this).data("code"))+"&nameSch="+decodeURI($(this).text());
+        });
+
+        
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>详情</title>
+<!-- <link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/bootstrap-theme.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css"> -->
+<link type="text/css" media="all" rel="stylesheet" href="css/jquery.tosrus.all.css" />
+<!-- <link rel="stylesheet" href="css/common.css" /> -->
+<link rel="stylesheet" href="css/yuanmei.css" />
+</head>
+<body>
+    <ul class="img_list clear  detail_content">
+        <li>
+            <a href="images/1.jpg">
+            <img src="images/1.jpg" >
+            </a>
+        </li>
+        <li>
+            <a href="images/2.jpg">
+            <img src="images/2.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="images/3.jpg">
+            <img src="images/3.jpg">
+            </a>
+        </li>
+        <li>
+            <a href="images/3.jpg">
+            <img src="images/3.jpg">
+            </a>
+        </li>
+    </ul>
+
+<script src="js/jquery.js"></script>
+<!-- <script src="js/layer/layer.js"></script>
+<script src="js/jquery.textarea_autosize.js"></script>
+<script src="js/dropload.min.js "></script> -->
+<script type="text/javascript" src="js/hammer.min.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.tosrus.min.all.js"></script>
+<!-- <script src="js/public.js"></script> -->
+<!-- <script src="js/jquery.sticky-kit.js"></script> -->
+<script>
+$(document).ready(function() {
+    // 添加弹出相册动作
+    tosrus('.img_list a',-300);
+});
+// str_dom:添加相册动作的dom对象; left:dom对象滑动到最右边时的left值
+function tosrus(str_dom,left_last){
+    // 添加弹出相册动作
+    $(str_dom).tosrus({
+        buttons    : "inline",
+        pagination : {
+        add        : true,
+        type       : "thumbnails"
+        }
+      });
+    var obj = document.getElementsByClassName("tos-slider")[0]; 
+    var startX = 0;
+    var endX = 0;
+    obj.addEventListener('touchstart', function(event) { 
+        // 如果这个元素的位置内只有一个手指的话 
+        if (event.targetTouches.length == 1) { 
+            var touch = event.targetTouches[0];
+            // 触发的坐标
+            startX = touch.pageX;
+        } 
+    }, false);
+    obj.addEventListener('touchmove', function(event) { 
+        // 如果这个元素的位置内只有一个手指的话 
+        if (event.targetTouches.length == 1) { 
+            var touch = event.targetTouches[0];
+            // 触发的坐标
+            endX = touch.pageX;
+        } 
+    }, false);
+    obj.addEventListener('touchend', function(event) { 
+        // 没有触发touchmove，endX为初始值0
+        if(endX === 0){
+            return;
+        }
+        // 往右滑
+        if(endX - startX > 0 && endX - startX >10){
+            var cur_left = parseInt(obj.style.left);
+            if(cur_left === 0){
+                // 坐标置0
+                startX = 0;
+                endX = 0;
+                return;
+            }else{
+                // 判断当前是第几个图片，从第0个开始
+                var count = parseInt(obj.style.left) / 100;
+                count = count > 0 ? count : (count*(-1));
+                // 触发左按钮
+                $('.tos-slider .tos-slide').eq(count).children(".tos-prev").trigger("click");
+            }
+        }
+
+        // 往左滑
+        if(endX - startX < 0 && endX - startX < -10){
+            var cur_left = parseInt(obj.style.left);
+
+            if(cur_left === left_last){
+                // 坐标置0
+                startX = 0;
+                endX = 0;
+                return;
+            }else{
+                // 判断当前是第几个图片，从第0个开始
+                var count = parseInt(obj.style.left) / 100;
+                count = count > 0 ? count : (count*(-1));
+                // 触发右按钮
+                $('.tos-slider .tos-slide').eq(count).children(".tos-next").trigger("click");
+            }
+        }
+        // 坐标置0
+        startX = 0;
+        endX = 0;
+    },false);
+}
+</script>
+<!-- <script src="js/public.js"></script> -->
+</body>
+</html>

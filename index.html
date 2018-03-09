@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>rabbit</title>
+		<!-- <link rel="stylesheet" href="css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="css/yuanmei.css" />
+	</head>
+	<body>
+		<nav class="ym-nav">
+			<ul class="menu">
+				<li>
+					<a href="filter.html" target="iframe" title="选择过滤">
+						<em>选择过滤</em>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);"  title="饼状图">
+						<em>饼状图</em>
+						<i class="icon-angle-right fr "></i>
+					</a>
+					<ul>
+						<li>
+							<a href="pie-3d.html" target="iframe"  title="3d">
+								<em>3d</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="layer-luck.html" target="iframe" title="弹框">
+						<em>弹框</em>
+					</a>
+				</li>
+				<li>
+				<li>
+					<a href="javascript:void(0);"  title="时间轴">
+						<em>时间轴</em>
+						<i class="icon-angle-right fr"></i>
+					</a>
+					<ul>
+						<li>
+							<a href="timerShaft-1.html" target="iframe"  title="时间轴1">
+								<em>时间轴1</em>
+							</a>
+						</li>
+						<li>
+							<a href="timerShaft-2.html" target="iframe"  title="时间轴2">
+								<em>时间轴2</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="photos.html" target="iframe" title="相册">
+						<em>相册</em>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);"  title="上下滑动刷新">
+						<em>上下滑动刷新</em>
+						<i class="icon-angle-right fr"></i>
+					</a>
+					<ul>
+						<li>
+							<a href="iScroll-v512.html" target="iframe"  title="iscroll-probe-v512">
+								<!-- iscroll-probe v5.1.2与v5.2.0代码及效果是一样的 -->
+								<em>iscroll-probe-v512</em>
+							</a>
+						</li>
+						<li>
+							<a href="iScroll-v42.html" target="iframe"  title="iscroll4">
+								<!-- bug：滑动过程中点击会自动跳到最后一行 -->
+								<em>iscroll4</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="video.html" target="iframe" title="视频">
+						<em>视频</em>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<section class="ym-main">
+			<iframe src="filter.html" name="iframe" frameborder="0">
+			</iframe>
+		</section>
+	</body>
+	<script src="js/jquery.js"></script>
+	<script>
+		// 侧导航切换
+		$(".ym-nav").on("click",".menu>li>a",function(e){
+			// e.preventDefault();
+			$(this).parent("li").toggleClass("on");
+			$(this).parent("li").siblings("li").removeClass("on");
+			$(this).parent("li").siblings("li").find("ul").slideUp(400);
+			$(this).next("ul").slideToggle(400);
+		});
+		$(".ym-nav").on("click",".menu li.on>ul>li>a",function(e){
+			// e.preventDefault();
+			$(this).parent("li").toggleClass("on");
+			$(this).parent("li").siblings("li").removeClass("on");
+
+		})
+	</script>
+</html>

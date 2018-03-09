@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html class="bgcl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>中考大事件选择地区</title>
+<link rel="stylesheet" href="css/yuanmei.css" />
+</head>
+<body class="bgcl" style="max-width: 414px;">
+    <section class="zkdsj-timeshaft">
+        <!-- 一个月份对应的一行 -->
+        <!-- <div class="shaft-0 tb"> -->
+            <!-- 左侧：月份 -->
+            <!-- <div class="tb-cell shaft-month tb">
+                <div class="month-l tb-cell">
+                    <div class="year">2016年</div>
+                    <div class="month">
+                        <span class="t-gbcl-0">12月<em class="t-gbcl-0"></em></span>
+                    </div>
+                </div>
+                <div class="month-r tb-cell">
+                    <i class="ball">
+                        <em class="t-gbcl-0"></em>
+                    </i>
+                </div>
+            </div> -->
+            <!-- 右侧：月份对应的内容 -->
+            <!-- <div class="tb-cell shaft-detail">
+                <div class="sanj-1 t-shadow-0"></div>
+                <div class="sanj-2 t-gbcl-0"></div>
+                <div class="showframe-1 t-shadow-0">
+                    <div class="showframe-2 t-gbcl-0">
+                        <div class="showframe-3">
+                            <div class="detail-title">
+                                元调
+                            </div>
+                            <div class="detail-list">
+                                <p>1.元月调考</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+<script src="js/jquery.js"></script>
+<script>
+    $.post(
+        "./js/time-shaft.json",
+        {},
+        function(data,state){
+            var month = 1;  //时间轴上强调内容的当前个数
+            var div_timeshaft = "";
+            var year = data.user[0].year;  //表示上一个年份
+            var class_shaft_last_2 = "";  //倒数第二个月份上时间轴的样式名
+            var myDate=new Date();
+            var cur_year = myDate.getFullYear();
+            var cur_month = myDate.getMonth()+1;
+            $.each(data.user,function(key,val){
+                var div_list = "";
+                var class_shaft = "";
+                var class_ballW = "";
+                var class_ball = "";
+                var class_sanj_1 = "";
+                var class_showframe_1 = "";
+                var class_year = "";
+                var num = 0;  //表示页面从0开始，从上往下数第n个月份
+                var year_tmp = val.year;  //表示当前年份
+                $.each(val.list,function(keyd,vald){
+                    div_list += '<p>'+vald+'</p>';
+                });
+                // 当月份个数超个10时，颜色进行循环展示
+                if((key%10) >= 0) {
+                    num = key%10;
+                }else{
+                    num = key;
+                }
+                class_shaft = 'shaft-'+num;
+                class_ballW = "ball";
+                class_ball = "t-gbcl-"+num;
+                class_sanj_1 = "sanj-1";
+                class_showframe_1 = "showframe-1";
+                class_year = "year";
+                // 当前月份需要强调样式，如果时间轴上没有当前月份，不进行强调样式
+                if((parseFloat(cur_year)+"年") === val.year && (parseFloat(cur_month)+"月") === val.month){
+                    class_ballW += " bgcl";
+                    class_ball += ' t-shadow-b'+num;
+                    class_sanj_1 = ' t-shadow-'+num;
+                    class_showframe_1 += ' t-shadow-'+num;
+                }
+                // 年份有变化
+                if(key !== 0){
+                    // 上年份与当前年份不相同
+                    if(year !== val.year){
+                        year = val.year;
+                    }else{
+                        class_year += " visib-hidden";
+                    }
+                }
+                // 当最后一个月份上年份与之前月份的年份不同时，倒数第二个月份上时间轴的添加样式名
+                if(key === data.user.length-1 && year_tmp !== ""){
+                    class_shaft_last_2 = "shaft-month-year"
+                }          
+
+                div_timeshaft += '<div class="'+class_shaft+' tb">'+
+                    '<div class="tb-cell shaft-month tb">'+
+                        '<div class="month-l tb-cell">'+
+                            '<div class="'+class_year+'">'+year_tmp+'</div>'+
+                            '<div class="month">'+
+                                '<span class="t-gbcl-'+num+'">'+val.month+
+                                    '<em class="t-gbcl-'+num+'"></em>'+
+                                '</span>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="month-r tb-cell">'+
+                            '<i class="'+class_ballW+'">'+
+                                '<em class="'+class_ball+'"></em>'+
+                            '</i>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="tb-cell shaft-detail">'+
+                        '<div class="'+class_sanj_1+'"></div>'+
+                        '<div class="sanj-2 t-gbcl-'+num+'"></div>'+
+                        '<div class="'+class_showframe_1+'">'+
+                            '<div class="showframe-2 t-gbcl-'+num+'">'+
+                                '<div class="showframe-3">'+
+                                    '<div class="detail-title">'+
+                                        val.title+
+                                    '</div>'+
+                                    '<div class="detail-list">'+
+                                        div_list+
+                                    '</div>'+
+                               '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+            });
+            $(".zkdsj-timeshaft").append(div_timeshaft);
+            $(".zkdsj-timeshaft>div:nth-last-child(2) .shaft-month").addClass(class_shaft_last_2);
+        },"json"
+    );
+</script>
+<script>
+</script>
+</body>
+</html>
